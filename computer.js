@@ -32,6 +32,74 @@ document.addEventListener("DOMContentLoaded", () => {
   const emailElement = document.getElementById("emailLink");
   if (emailElement) setupEmailCopy(emailElement);
 });
+// Paint JS with touch support
+const canvas = document.getElementById('paintCanvas');
+const ctx = canvas.getContext('2d');
+
+let painting = false;
+let brushColor = document.getElementById('paintColor').value;
+let brushSize = document.getElementById('brushSize').value;
+
+function getPos(e) {
+  const rect = canvas.getBoundingClientRect();
+  if (e.touches) { // touch event
+    return {
+      x: e.touches[0].clientX - rect.left,
+      y: e.touches[0].clientY - rect.top
+    };
+  } else { // mouse event
+    return {
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    };
+  }
+}
+
+function startPosition(e) {
+  painting = true;
+  draw(e);
+}
+function finishedPosition() {
+  painting = false;
+  ctx.beginPath();
+}
+function draw(e) {
+  if (!painting) return;
+
+  const { x, y } = getPos(e);
+
+  ctx.lineWidth = brushSize;
+  ctx.lineCap = 'round';
+  ctx.strokeStyle = brushColor;
+
+  ctx.lineTo(x, y);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+
+  e.preventDefault(); // prevent scrolling while drawing on touch
+}
+
+// Mouse events
+canvas.addEventListener('mousedown', startPosition);
+canvas.addEventListener('mouseup', finishedPosition);
+canvas.addEventListener('mouseout', finishedPosition);
+canvas.addEventListener('mousemove', draw);
+
+// Touch events
+canvas.addEventListener('touchstart', startPosition);
+canvas.addEventListener('touchend', finishedPosition);
+canvas.addEventListener('touchcancel', finishedPosition);
+canvas.addEventListener('touchmove', draw);
+
+// Update color & brush size
+document.getElementById('paintColor').addEventListener('input', e => brushColor = e.target.value);
+document.getElementById('brushSize').addEventListener('input', e => brushSize = e.target.value);
+
+// Clear canvas
+document.getElementById('clearCanvas').addEventListener('click', () => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+});
 
 // --- Analog clock ---
 function updateClock() {
@@ -48,7 +116,52 @@ function updateClock() {
   if (minHand) minHand.style.transform = `rotate(${minDeg}deg)`;
   if (hourHand) hourHand.style.transform = `rotate(${hourDeg}deg)`;
 }
-
+setInterval(showTime, 1000);
+        function showTime() {
+            let time = new Date();
+            let hour =
+                time.getHours();
+            let min =
+                time.getMinutes();
+            let sec =
+                time.getSeconds();
+            am_pm = "AM";
+        
+            if (hour >= 12) {
+                if (hour > 12)
+                    hour -= 12;
+                am_pm = "PM";
+            } else if (hour == 0) {
+                hr = 12;
+                am_pm = "AM";
+            }
+        
+            hour =
+                hour < 10
+                    ? "0" + hour
+                    : hour;
+            min =
+                min < 10
+                    ? "0" + min
+                    : min;
+            sec =
+                sec < 10
+                    ? "0" + sec
+                    : sec;
+        
+            let currentTime =
+                hour +
+                ":" +
+                min +
+                ":" +
+                sec +
+                am_pm;
+        
+            document.getElementById(
+                "digitalClock"
+            ).innerHTML =
+                currentTime;
+        }
 // --- Works Popup Helper ---
 function setupWorksPopup(worksPopupBody) {
   const animationContainer = document.createElement('div');
