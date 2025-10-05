@@ -561,6 +561,45 @@ body {
     margin-top: -10px;
   }
 }
+/* --- CV Button inside intro --- */
+.profile-cv {
+  margin-top: 10px;
+}
+
+.cv-links {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.cv-links a {
+  text-decoration: none;
+  color: #000000;
+  background: rgba(255,255,255,0.1);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.2s ease;
+  box-shadow: 1px 1px 0 #404040;
+}
+
+.cv-links a:hover {
+  color: white;
+    transition: color 0.1s ease;
+  background: rgba(255,255,255,0.2);
+}
+
+/* Mobile tweak — center the button */
+@media (max-width: 450px) {
+  .cv-links {
+    justify-content: center;
+  }
+
+  .cv-links a {
+    font-size: 13px;
+  }
+}
+
 /* About Section */
 .profile-about {
   margin-top: 20px;

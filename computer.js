@@ -1,6 +1,6 @@
 // === Development Toggle ===
-const devEditMode = false;
-const devPopupId = "welcomePopup"; // dev-only popup
+const devEditMode = true;
+const devPopupId = "profilePopup"; // dev-only popup
 
 document.addEventListener("DOMContentLoaded", () => {
   // --- Handle initial popup ---
