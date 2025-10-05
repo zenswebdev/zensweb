@@ -175,6 +175,21 @@ body {
   height: 20px;
   background: red;
 }
+/* Clock Popup styling */
+#clockPopup .popup-scrollable {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;       /* adjust height as needed */
+}
+
+#digitalClock {
+  font-family: 'Courier New', monospace;
+  font-size: 36px;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  text-align: center;
+}
 /* Music Player Layout */
 .music-player {
   display: flex;
@@ -286,6 +301,20 @@ body {
 .track-item.active {
   background-color: #d0d0d0;
   font-weight: bold;
+}
+/* Paint styles */
+.paint-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#paintCanvas {
+  display: block;
+  background: #fff;
+  cursor: crosshair;
 }
 /* === Base popup === */
 .popup {

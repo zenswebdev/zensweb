@@ -88,17 +88,15 @@
       </div>
   </div>
     <!-- Clock Popup -->
-  <div id="clockPopup" class="popup popup-general">
-      <div class="popup-header">
-        The Time?
-        <button onclick="closePopup('clockPopup')">X</button>
-      </div>
-      <div class="popup-scrollable"> 
-        <img src="assets/sad-fade.gif">
-         <h1>When It Is Time, No One Comes</h1>
-         <h1>When You Have Time, It Is Up</h1>
-      </div>
+<div id="clockPopup" class="popup popup-general">
+  <div class="popup-header">
+    The Time?
+    <button onclick="togglePopup('clockPopup')">X</button>
   </div>
+  <div class="popup-scrollable">
+    <h1 id="digitalClock">--:--:--</h1>
+  </div>
+</div>
     <!-- Writings Popup -->
     <div id="writingsPopup" class="popup popup-writings">
       <div class="popup-header">
@@ -116,9 +114,13 @@
         Paint
         <button onclick="closePopup('paintPopup')">X</button>
       </div>
-      <div class="popup-body"> 
-        <img src="assets/sad-fade.gif">
-        <h1>In Progress</h1>
+      <div class="popup-body">
+        <div class="paint-controls">
+          <label>Color: <input type="color" id="paintColor" value="#000000"></label>
+          <label>Brush: <input type="range" id="brushSize" min="1" max="20" value="3"></label>
+          <button id="clearCanvas">Clear</button>
+        </div>
+        <canvas id="paintCanvas" width="600" height="400" style="border:1px solid #ccc;"></canvas>
       </div>
     </div>
     <!-- Cat Popup -->
