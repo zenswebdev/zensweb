@@ -8,13 +8,15 @@
     { "title": "Nano Walking", "description": "For NanoRealms Instagram", "image": "assets/images/nano_walk_loop.gif", "thumbnail": "assets/images/nano_walk_loop.gif" }
   ],
   "Digital Art": [
-    { "title": "3 Shapes", "description": "", "image": "assets/images/3Character_Shapes.webp" },
-    { "title": "3 Poses", "description": "", "image": "assets/images/3Character_Poses.webp" },
+    { "title": "Meet Nano", "description": "Mascot for Nano Realms", "image": "assets/images/Nanorealms_pp.webp" },
+    { "title": "Nano Realms", "description": "A pinup", "image": "assets/images/Nano_pinup.webp","thumbnail": "assets/thumbnails/Nano_pinup_thumbnail.webp" },
+    { "title": "Nano Sleeps", "description": "WIP", "image": "assets/images/Nano_sleeping.webp" },
+    { "title": "3 Shapes", "description": "", "image": "assets/images/3Character_Shapes.webp","thumbnail": "assets/thumbnails/3_Shapes_thumbnail.webp" },
+    { "title": "3 Poses", "description": "", "image": "assets/images/3Character_Poses.webp","thumbnail": "assets/thumbnails/3_body_silhouette_thumbnail.webp" },
     { "title": "3 Dudes", "description": "", "image": "assets/images/3Character_Dudes.webp" },
-    { "title": "Hammer Designs", "description": "", "image": "assets/images/Hammers_Design.webp" },
-    { "title": "Fantasy Huts", "description": "", "image": "assets/images/Fantasy_Teahouses.webp" },
-    { "title": "Machete Designs", "description": "", "image": "assets/images/Machetes_Design.webp" }
-  
+    { "title": "Dark Mage Hammer Designs", "description": "Fictional hammers if they belonged to a dark mage", "image": "assets/images/Hammers_Design.webp","thumbnail": "assets/thumbnails/Hammer_thumbnail.webp" },
+    { "title": "Timekeeper Teahouses Designs", "description": "Fictional teahouses if it belonged to a timekeeper ", "image": "assets/images/Fantasy_Teahouses.webp","thumbnail": "assets/thumbnails/Teahouse_thumbnail.webp" },
+    { "title": "Butcher's Machete Designs", "description": "Fictional machetes if they belonged to a butcher", "image": "assets/images/Machetes_Design.webp","thumbnail": "assets/thumbnails/Machete_thumbnail.webp" }
   ],
   "Drawings": [
     { "title": "Solar", "description": "", "image": "assets/images/Solar.webp" },

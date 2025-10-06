@@ -178,28 +178,28 @@ function setupWorksPopup(worksPopupBody) {
         divider.textContent = category;
         const container = category === "Animation" ? animationContainer : worksPopupBody;
         container.appendChild(divider);
+
         data[category].forEach(work => {
           const card = document.createElement('div');
           card.className = 'work-item';
-          if (work.image) {
+
+          // Use thumbnail if available, otherwise use image
+          const imgSrc = work.thumbnail || work.image;
+          if (imgSrc) {
             const img = document.createElement('img');
-            img.src = work.image;
+            img.src = imgSrc;
             img.alt = work.title || "Untitled";
             card.appendChild(img);
-            card.addEventListener('click', () => openLightbox(work, 'worksPopup'));
-          } else if (work.video) {
-            const thumb = document.createElement('img');
-            thumb.src = work.thumbnail;
-            thumb.alt = work.title || "Untitled";
-            card.appendChild(thumb);
-            card.addEventListener('click', () => openLightbox(work, 'worksPopup', true));
+            card.addEventListener('click', () => openLightbox(work, 'worksPopup', !!work.video));
           }
+
           container.appendChild(card);
         });
       });
     })
     .catch(err => console.error("Failed to load works.json:", err));
 }
+
 
 // --- Email Copy Helper ---
 function setupEmailCopy(emailElement) {
