@@ -1,6 +1,6 @@
 // === Development Toggle ===
 const devEditMode = false;
-const devPopupId = "profilePopup"; // dev-only popup
+const devPopupId = "gamesPopup"; // dev-only popup
 
 document.addEventListener("DOMContentLoaded", () => {
   // --- Handle initial popup ---
@@ -54,7 +54,6 @@ function getPos(e) {
     };
   }
 }
-
 function startPosition(e) {
   painting = true;
   draw(e);
@@ -79,7 +78,30 @@ function draw(e) {
 
   e.preventDefault(); // prevent scrolling while drawing on touch
 }
+// --- Swap icons on hover for Currently Playing ---
+document.addEventListener("DOMContentLoaded", () => {
+  const currentlyPlayingCards = document.querySelectorAll(
+    ".currently-playing .game-card"
+  );
 
+  currentlyPlayingCards.forEach(card => {
+    const img = card.querySelector("img");
+    if (!img) return;
+
+    const originalSrc = img.src;
+    const hoverSrc = originalSrc.replace(".webp", "_hover.gif");
+
+    // when mouse enters the whole card (img or title)
+    card.addEventListener("mouseenter", () => {
+      img.src = hoverSrc;
+    });
+
+    // when mouse leaves the whole card (img or title)
+    card.addEventListener("mouseleave", () => {
+      img.src = originalSrc;
+    });
+  });
+});
 // Mouse events
 canvas.addEventListener('mousedown', startPosition);
 canvas.addEventListener('mouseup', finishedPosition);

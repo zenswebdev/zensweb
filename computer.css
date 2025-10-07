@@ -61,7 +61,6 @@ body {
   grid-template-columns: repeat(4, 100px);
   justify-content: center;
 }
-
 @media (max-width: 450px) {
   .apps {
     grid-template-columns: repeat(auto-fit, minmax(100px, 100px));
@@ -105,43 +104,111 @@ body {
 }
 
 /* Per-icon assignments */
-
 /* Music */
 .icon.music::before  { background-image: url("assets/cd_audio_cd_a-4.webp"); }
 .icon.music::after   { background-image: url("assets/cd_audio_cd_a-3.webp"); }
-
 /* Games */
 .icon.games::before  { background-image: url("assets/steam-1.webp"); }
 .icon.games::after   { background-image: url("assets/steam-2.webp"); }
-
 /* Recycle */
 .icon.recycle::before { background-image: url("assets/recycle_bin_empty-4.webp"); }
 .icon.recycle::after  { background-image: url("assets/recycle_bin_empty-5.webp"); }
-
 /* Writings */
 .icon.writings::before { background-image: url("assets/typewriter-2.webp"); }
 .icon.writings::after  { background-image: url("assets/typewriter-1.webp"); }
-
 /* Paint */
 .icon.paint::before  { background-image: url("assets/palette-1.webp"); }
 .icon.paint::after   { background-image: url("assets/palette-2.webp"); }
-
 /* Apple (if enabled) */
 .icon.apple::before  { background-image: url("assets/bad_apple-1.webp"); }
 .icon.apple::after   { background-image: url("assets/bad_apple-2.webp"); }
-
 /* Cat */
 .icon.cat::before  { background-image: url("assets/cat-1.webp"); }
 .icon.cat::after  { background-image: url("assets/cat-2.webp"); }
-
 /* Credits */
 .icon.credits::before  { background-image: url("assets/credits-1.webp"); }
 .icon.credits::after   { background-image: url("assets/credits-2.webp"); }
-
 /* Films */
 .icon.films::before  { background-image: url("assets/film-1.webp"); }
 .icon.films::after   { background-image: url("assets/film-2.webp"); }
-  /*Clock*/
+
+/* --- Games Popup Styling --- */
+.games-popup-body {
+  background-color: rgba(0, 0, 0, 0.7);
+  background-blend-mode: darken;
+  background-image: url("assets/blackhole1.gif");
+  background-size: cover;
+  background-position: center;
+}
+
+
+/* Section headers */
+.games-section h1,
+.popup-body h1,
+.games-grid h1 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  border-bottom: 1px solid var(--accent-color, #aaa);
+  padding-bottom: 0.2rem;
+  color: var(--text-color, #fff);
+}
+
+/* Grid for game cards */
+.game-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Uniform card sizing and layout */
+.game-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* align items to bottom */
+  text-align: center;
+  height: 130px;
+}
+
+/* Game icon */
+.game-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Game title */
+.game-card p {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-color, #fff);
+  text-shadow: 0 0 4px rgba(0,0,0,0.4);
+  margin: 0;
+  text-align: center;
+}
+
+/* Hover effect */
+.game-card:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+/* Responsive grid */
+@media (max-width: 400px) {
+  .game-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .game-card {
+    height: 120px;
+  }
+}
+
+/*Clock*/
 .clock {
   position: relative;
   width: 80px;   /* size of your clock */
@@ -182,7 +249,6 @@ body {
   align-items: center;
   height: 150px;       /* adjust height as needed */
 }
-
 #digitalClock {
   font-family: 'Courier New', monospace;
   font-size: 36px;
@@ -281,7 +347,6 @@ body {
   padding-top: 5px;
   scroll-behavior: smooth;
 }
-
 .music-list {
   display: flex;
   flex-direction: column;
@@ -310,7 +375,6 @@ body {
   align-items: center;
   flex-wrap: wrap;
 }
-
 #paintCanvas {
   display: block;
   background: #fff;
@@ -378,8 +442,8 @@ body {
 /* General Popup Base */
 .popup-general {
   width: 90%;
-  max-width: 300px;
-  max-height: calc(100% - 140px);
+  max-width: 400px;
+  max-height: calc(100% - 150px);
   margin: 0 auto;
   text-align: center; /* center text */
   display: none; /* keep hidden by default */
