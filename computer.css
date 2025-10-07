@@ -144,7 +144,6 @@ body {
 
 /* Section headers */
 .games-section h1,
-.popup-body h1,
 .games-grid h1 {
   margin-bottom: 0.5rem;
   font-size: 1.2rem;
@@ -152,7 +151,9 @@ body {
   padding-bottom: 0.2rem;
   color: var(--text-color, #fff);
 }
-
+#gamesPopup .popup-body h1 {
+  color: var(--text-color, #fff);
+}
 /* Grid for game cards */
 .game-section {
   display: grid;
