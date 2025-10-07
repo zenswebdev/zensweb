@@ -357,6 +357,7 @@ function keepPopupOpen(id) {
                   popup.classList.contains('popup-profile') ||
                   popup.classList.contains('popup-cat') ||
                   popup.classList.contains('popup-general') ||
+                  popup.classList.contains('popup-games') ||
                   popup.classList.contains('popup-contact');
 
   popup.style.display = useFlex ? "flex" : "block";

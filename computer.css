@@ -133,7 +133,7 @@ body {
 .icon.films::after   { background-image: url("assets/film-2.webp"); }
 
 /* --- Games Popup Styling --- */
-.games-popup-body {
+.games-scrollable {
   background-color: rgba(0, 0, 0, 0.7);
   background-blend-mode: darken;
   background-image: url("assets/blackhole1.gif");
@@ -141,14 +141,13 @@ body {
   background-position: center;
 }
 
-
 /* Section headers */
 .games-section h1,
 .games-grid h1 {
   margin-bottom: 0.5rem;
   font-size: 1.2rem;
   border-bottom: 1px solid var(--accent-color, #aaa);
-  padding-bottom: 0.2rem;
+  padding-bottom: 0.1rem;
   color: var(--text-color, #fff);
 }
 #gamesPopup .popup-body h1 {
@@ -161,25 +160,19 @@ body {
   gap: 1rem;
   margin-bottom: 2rem;
 }
-
-/* Uniform card sizing and layout */
 .game-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* align items to bottom */
+  justify-content: flex-start;
   text-align: center;
-  height: 130px;
+  height: auto; /* let it grow */
+  min-height: 130px; /* optional: maintain some uniformity */
 }
-
-/* Game icon */
 .game-card img {
   width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 0.5rem;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  max-width: 100%; /* never overflow container */
+  height: auto;
 }
 
 /* Game title */
@@ -427,7 +420,7 @@ body {
 .popup-body p {
   margin: 5px auto 30px; 
 }
-
+.games-scrollable,
 .work-scrollable,
 .profile-scrollable,
 .cat-scrollable,
