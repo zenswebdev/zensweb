@@ -10,7 +10,7 @@
   "Digital Art": [
     { "title": "Meet Nano", "description": "Mascot for Nano Realms", "image": "assets/images/Nanorealms_pp.webp" },
     { "title": "Nano Realms", "description": "A pinup", "image": "assets/images/Nano_pinup.webp","thumbnail": "assets/thumbnails/Nano_pinup_thumbnail.webp" },
-    { "title": "Nano Sleeps", "description": "WIP", "image": "assets/images/Nano_sleeping.webp" },
+    { "title": "Nano Side", "description": "WIP", "image": "assets/images/Nano_side.webp" },
     { "title": "3 Shapes", "description": "", "image": "assets/images/3Character_Shapes.webp","thumbnail": "assets/thumbnails/3_Shapes_thumbnail.webp" },
     { "title": "3 Poses", "description": "", "image": "assets/images/3Character_Poses.webp","thumbnail": "assets/thumbnails/3_body_silhouette_thumbnail.webp" },
     { "title": "3 Dudes", "description": "", "image": "assets/images/3Character_Dudes.webp" },
@@ -29,7 +29,15 @@
     { "title": "Ride On Time", "description": "", "image": "assets/images/RideOnTime.webp" },
     { "title": "Self Portrait", "description": "", "image": "assets/images/Self_Portrait-1.webp" },
     { "title": "Food Impressions", "description": "", "image": "assets/images/Food_Impressions.webp" },
-     { "title": "Gambinos", "description": "", "image": "assets/images/Gambinos.webp" },
+    { "title": "Gambinos", "description": "", "image": "assets/images/Gambinos.webp" },
     { "title": "Gazing", "description": "", "image": "assets/images/Gazing.webp" }
+  ],
+  "Personal": [
+   { "title": "Molly", "description": "", "image": "assets/images/Molly_charsheet.webp" },
+   { "title": "Dan", "description": "", "image": "assets/images/Dan_charsheet.webp" },
+   { "title": "Fiona", "description": "", "image": "assets/images/Fiona_charsheet.webp" },   
+   { "title": "View from a lighthouse", "description": "", "image": "assets/images/Lighthouse.webp" },
+   { "title": "Fallport", "description": "A fictional city built around a massive sinkhole", "image": "assets/images/Fallport.webp","thumbnail": "assets/thumbnails/Fallport_thumbnail.webp" },
+   { "title": "Desert Longlegs", "description": "Public transport across desolated lands", "image": "assets/images/Desert_Longlegs.webp","thumbnail": "assets/thumbnails/Desert_Longlegs_thumbnail.webp" }
   ]
 }
