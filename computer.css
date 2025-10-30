@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'MarioKartDS';
+  src: url('assets/fonts/Mario-Kart-DS.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 body {
   margin: 0;
   height: 100vh;
@@ -550,6 +556,13 @@ body {
   line-height: 1.3; /* tighter vertical spacing */
 }
 /* === welcome popup === */
+#welcomePopup .popup-body h1,
+#welcomePopup .popup-body h2,
+#welcomePopup .popup-body p,
+#welcomePopup .popup-body span,
+#welcomePopup .popup-body .email {
+  font-family: 'MarioKartDS', sans-serif;
+}
 .popup-welcome {
   width: 500px;
   max-width: 90%;
@@ -567,6 +580,7 @@ body {
   display: flex;
   align-items: center;
   margin-bottom: 0;
+  font-family:'Times New Roman', Times, serif
 }
 .popup-welcome .top-row img.wave {
   position: absolute;
@@ -585,13 +599,13 @@ body {
   height: 230px;
   left: 120px;
 }
-.email {
-  font-size: 12px;
+#welcomePopup .popup-body p.email {
+  font-size: 20px;
   font-weight: bold;
-  color: rgb(255, 255, 255);
-  margin: 4px 0;    
+  color: #fff;
+  margin: 0 auto 0;
   width: 100%;
-  text-align: right;   
+  text-align: right;
 }
 .popup-welcome .popup-body .divider {
   border: none;
@@ -600,12 +614,21 @@ body {
   width: 100%;
   margin: 0 0 15px 0; 
 }
-.popup-welcome h1,
-.popup-welcome h2 {
+.popup-welcome h1{
+  pointer-events: none;
   color: #ffffff;
   text-align: center;
   width: 100%;         
-  margin: 10px auto 10px;   
+  margin: 5px auto 15px; 
+  font-size: 60px;  
+}
+.popup-welcome h2 {
+  pointer-events: none;
+  color: #ffffff;
+  text-align: center;
+  width: 100%;         
+  margin: 5px auto 15px; 
+  font-size: 30px;  
 }
 /* Profile popup */
 .popup-profile {
