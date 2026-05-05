@@ -229,7 +229,12 @@ body {
 }
 
 .screen-off::after {
-  content: "POWER OFF";
+  content: "POWER OFF\A Updated 050326 ";
+  white-space: pre-line;
+  display: block;
+  margin-top: 8px;
+  line-height: 1.5;
+  text-align: center;
 }
 
 .button {
