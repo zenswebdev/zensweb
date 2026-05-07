@@ -1,0 +1,436 @@
+<!-- Created my digital footprint -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <!-- Favicon -->
+    <link rel="icon" type="image/webp" sizes="32x32" href="assets/cat-2.webp">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+  <link rel="stylesheet" href="homepage.css">
+  </head>
+  <body>
+    <div class="screen">
+      <div class="apps-scrollable">
+          <div class="apps">
+            <a href="trash" class="app trash">
+            <div class="icon recycle"  aria-label="trashbin"></div></a>
+            <div class="icon music"    aria-label="music"    onclick="togglePopup('musicPopup')"></div>
+            <div class="icon games"    aria-label="games"    onclick="togglePopup('gamesPopup')"></div>
+            <div class="icon clock" aria-label="clock"       onclick="togglePopup('clockPopup')">
+              <div class="clock">
+                <img src="assets/clock_body-1.webp" alt="clock" class="clock-face" >
+                <div class="hand hour" id="hourHand"></div>
+                <div class="hand minute" id="minuteHand"></div>
+                <div class="hand second" id="secondHand"></div>
+              </div>
+            </div>
+            <div class="icon writings"  aria-label="writings"  onclick="togglePopup('writingsPopup')"></div>
+            <div class="icon paint"    aria-label="paint"    onclick="togglePopup('paintPopup')"></div>
+            <div class="icon cat"      aria-label="cat"      onclick="togglePopup('catPopup')"></div>
+            <div class="icon credits" aria-label="credits" onclick="togglePopup('creditsPopup')"></div>
+            <div class="icon films" aria-label="films" onclick="togglePopup('filmsPopup')"></div>
+          </div>
+    </div>
+    <!-- Music Popup -->
+    <div id="musicPopup" class="popup popup-music">
+          <div class="popup-header">
+            Music
+            <button onclick="closePopup('musicPopup')">X</button>
+          </div>
+
+      <div class="popup-body"> 
+        <div class="music-player">
+          <!-- Top row: album cover + volume -->
+          <div class="top-row">
+            <div class="song-img">
+              <!-- Start with placeholder or empty src; will update via JS -->
+              <img src="" alt="Album Cover">
+            </div>
+            <!-- Volume controls -->
+            <div class="volume-controls">
+              <button class="taskbar-button" id="volUpBtn" aria-label="Volume Up" title="Volume Up">🔊</button>
+              <button class="taskbar-button" id="volDownBtn" aria-label="Volume Down" title="Volume Down">🔉</button>
+              <button class="taskbar-button" id="muteBtn" aria-label="Mute" title="Mute">🔇</button>
+            </div>
+          </div>
+          <!-- Playback controls -->
+          <div class="controls">
+            <button class="taskbar-button" id="prevBtn" aria-label="Previous" title="Previous">⏮️</button>
+            <button class="taskbar-button" id="playPauseBtn" aria-label="Play/Pause" title="Play/Pause">▶️</button>
+            <button class="taskbar-button" id="nextBtn" aria-label="Next" title="Next">⏭️</button>
+          </div>
+
+          <!-- Scrubber / progress bar -->
+          <div class="scrubber-container">
+            <input type="range" id="scrubber" min="0" max="100" value="0">
+          </div>
+        </div>
+
+        <!-- Tracklist container (will be populated dynamically) -->
+        <div class="music-scrollable">
+          <div class="music-list"></div>
+        </div>
+
+        <!-- Audio element (no src here, set via JS) -->
+        <audio id="musicPlayer"></audio>
+      </div>
+    </div>
+    <!-- Games Popup -->
+    <div id="gamesPopup" class="popup popup-general">
+      <div class="popup-header">
+        Games
+        <button onclick="closePopup('gamesPopup')">X</button>
+      </div>
+      <div class="games-scrollable">
+        <div class="popup-body games-popup-body">
+          <h1>Currently Playing</h1>
+          <div class="game-section currently-playing">
+            <div class="game-card">
+              <img src="assets/icons/isaac.webp" alt="The Binding Of Isaac">
+              <p>The Binding Of Isaac</p>
+            </div>
+            <div class="game-card">
+              <img src="assets/icons/apex.webp" alt="Apex Legends">
+              <p>Apex Legends</p>
+            </div>
+            <div class="game-card">
+              <img src="assets/icons/nubby.webp" alt="Nubby's Number Factory">
+              <p>Nubby's Number Factory</p>
+            </div>      
+          </div>
+
+          <h1>In Rotation</h1>
+          <div class="game-section">
+            <div class="game-card">
+              <img src="assets/icons/balatro.webp" alt="Balatro">
+              <p>Balatro</p>
+            </div>
+            <div class="game-card">
+              <img src="assets/icons/peak.webp" alt="Peak">
+              <p>Peak</p>
+            </div>
+            <div class="game-card">
+              <img src="assets/icons/rain.webp" alt="Risk Of Rain 2">
+              <p>Risk Of Rain 2</p>
+            </div>      
+          </div>
+          <h1>Wishlist</h1>
+          <div class="game-section">
+            <div class="game-card">
+              <img src="assets/icons/carpark.webp" alt="Car Park Capital">
+              <p>Car Park Capital</p>
+            </div>
+            <div class="game-card">
+              <img src="assets/icons/clover.webp" alt="CloverPit">
+              <p>CloverPit</p>
+            </div>      
+            <div class="game-card">
+              <img src="assets/icons/mega.webp" alt="Megabonk">
+              <p>Megabonk</p>
+            </div>           
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Clock Popup -->
+    <div id="clockPopup" class="popup popup-general">
+      <div class="popup-header">
+        The Time?
+        <button onclick="togglePopup('clockPopup')">X</button>
+      </div>
+      <div class="popup-scrollable">
+        <h1 id="digitalClock">--:--:--</h1>
+      </div>
+    </div>
+    <!-- Writings Popup -->
+    <div id="writingsPopup" class="popup popup-writings">
+          <div class="popup-header">
+            Writings
+            <button onclick="closePopup('writingsPopup')">X</button>
+          </div>
+          <div class="popup-scrollable">
+            <img src="assets/gunna-fire.gif">
+            <h1>In Progress</h1>
+          </div>
+    </div>
+    <!-- Paint Popup -->
+    <div id="paintPopup" class="popup popup-general">
+          <div class="popup-header">
+            Paint
+            <button onclick="closePopup('paintPopup')">X</button>
+          </div>
+          <div class="popup-body">
+            <div class="paint-controls">
+              <label>Color: <input type="color" id="paintColor" value="#000000"></label>
+              <label>Brush: <input type="range" id="brushSize" min="1" max="20" value="3"></label>
+              <button id="clearCanvas">Clear</button>
+            </div>
+            <canvas id="paintCanvas" width="600" height="400" style="border:1px solid #ccc;"></canvas>
+          </div>
+    </div>
+    <!-- Cat Popup -->
+    <div id="catPopup" class="popup popup-cat">
+      <div class="popup-header">
+        Cat
+        <button onclick="closePopup('catPopup')">X</button>
+      </div>
+      <div class="cat-scrollable">
+        <!-- Cat Intro -->
+        <div class="cat-intro">
+          <h2>Biscuit Girl</h2>
+          <p>Queen B</p>
+          <img src="assets/Biscuit_wobble.gif" alt="Biscuit intro" class="cat-intro-img">
+        </div>
+
+        <!-- Cat Gallery -->
+        <div class="cat-gallery">
+          <img src="assets/cat_swing.gif" alt="Biscuit Swing" class="cat-img">
+
+        </div>
+      </div>
+    </div>
+    <!-- Credits Popup -->
+    <div id="creditsPopup" class="popup popup-general">
+      <div class="popup-header">
+        Credits
+        <button onclick="closePopup('creditsPopup')">X</button>
+      </div>
+      <div class="popup-scrollable">
+        <h1>All The Lovely People</h1>
+        <div class="contributors">
+          <div class="contributor">
+            <a href="https://www.linkedin.com/in/jeffkkyip/" target="_blank" rel="noopener noreferrer">
+              <img src="assets/jeff_kock.gif" alt="Jeff Kock">
+            </a>
+            <p>Mr Yip</p>
+          </div>
+          <div class="contributor">
+            <a href="https://www.linkedin.com/in/huang-shilong/" target="_blank" rel="noopener noreferrer">
+              <img src="assets/mr_long.gif" alt="Mr Long">
+            </a>
+            <p>Mr Long</p>
+          </div>
+        </div>
+        <h3>Made possible by the seer will of an idiot with help from amazing people</h3>
+        <h3>Macintosh asset by <a href="https://fossheim.io/" target="_blank" rel="noopener noreferrer">Sarah Fossheim</a></h3>
+        <h3>Album pixel art by <a href="https://www.instagram.com/8bitalbumcovers/" target="_blank" rel="noopener noreferrer">8bitalbumcovers</a></h3>
+      </div>
+    </div>
+    <!-- Films Popup -->
+    <div id="filmsPopup" class="popup popup-general">
+          <div class="popup-header">
+            Films
+            <button onclick="closePopup('filmsPopup')">X</button>
+          </div>
+          <div class="popup-body">
+            <img src="assets/Absolute_Cinema.webp">
+            <h1>In Progress</h1>
+          </div>
+    </div>
+    <!--Welcome Popup-->
+    <div id="welcomePopup" class="popup popup-welcome">
+          <div class="popup-header">
+            <span>Welcome</span>
+            <button onclick="closePopup('welcomePopup')">X</button></div>
+
+          <div class="popup-body">
+              <div class="top-row">
+                <img src="assets/sonnyboy_profile.gif" alt="Avatar" class="avatar">
+                <img src="assets/wave-1.gif" alt="Wave" class="wave">
+                <img src="assets/speech_bubble-2.gif" alt="speech" class="speech">
+              </div>
+              <div class="divider"></div>
+              <h1 class>lee zen</h1>
+              <div class="divider"></div>
+              <h2>animator | artiste | friend</h2>
+              <p class="email">zenworklee@gmail.com</p>
+        </div>
+    </div>
+    <!-- Profile Popup -->
+    <div id="profilePopup" class="popup popup-profile">
+          <div class="popup-header">
+            <span>Profile</span>
+            <button onclick="closePopup('profilePopup')">X</button>
+          </div>
+          <div class="profile-scrollable">
+            <!-- Intro Section -->
+            <div class="profile-intro">
+              <img src="assets/profile_kid-1.webp" alt="Profile Picture" class="profile-pic">
+              <div class="profile-info">
+                <h1>Hi, I'm Zen, and I do arts and stuff.</h1>
+                <h2>Animate, Illustrate and Flatulate. You name it!</h2>
+            <!-- CV -->
+                <div class="profile-cv">
+                  <div class="cv-links">
+                    <a href="assets/Zen_CV_2026.pdf" target="_blank" rel="noopener">📄 View My CV</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- About Section -->
+            <div class="profile-about">
+              <h1>About</h1>
+              <h3>I love daydreaming, which made me draw my ideas out. That made me love to draw which led me to create. Then I realized, as an output, I love to create. Till this very day :)</h3>
+            </div>
+            <!-- Education Section -->
+            <div class="education">
+              <h1>Education</h1>
+              <div class="education-progress">
+                <div class="qualifcation unlocked">
+                  <h3>O-Levels (Completed)</h3>
+                </div>
+                <div class="qualifcation current">
+                  <h3>Diploma In Digital Animation</h3>
+                  <span>(Singapore Polytechnic 2023)</span>
+                </div>
+                <div class="qualifcation locked">
+                  <h3>Bachelor's (ArtEZ BEAR Fine Art 2026)</h3>
+                </div>
+              </div>
+            </div>
+            <!-- Interests -->
+            <div class="profile-interests">
+              <h1>Interests</h1>
+              <ul>
+                <li>
+                  <a href="#" onclick="togglePopup('filmsPopup'); return false;">Films</a> and stuff
+                </li>
+                <li>
+                <a href="#" onclick="togglePopup('musicPopup'); return false;">Music</a>, check my playlist out
+                </li>
+                <li>
+                  <a href="#" onclick="togglePopup('gamesPopup'); return false;">Games</a>, knowwhatimsayin?
+                </li>
+                <li>
+                  <a href="#" onclick="togglePopup('catPopup'); return false;">Cats</a>! Give belly rubs to my cat Biscuit
+                </li>
+              </ul>
+            </div>
+            <!-- Outlook / Output -->
+            <div class="profile-outlook">
+              <div class="title-row">
+                <h1>Output</h1>
+                <h2>040526</h2>
+              </div>
+              <h4>Got accepted to ArtEZ, Imma be an artist now mom!</h4>
+              <h4>Came back from 3 weeks of Europe, got scared</h4>
+            </div>
+            <!-- underwear-->
+            <div class="profile-about">
+              <h1>Underwear</h1>
+              <span class="emoji">🩲</span>
+            </div>
+            
+          </div>
+    </div>
+    <!-- Works  -->
+    <div class="icon works" aria-label="works" onclick="togglePopup('worksPopup')"></div>
+    <div id="worksPopup" class="popup popup-works">
+      <div class="popup-header">
+        Works
+        <button onclick="closePopup('worksPopup')">X</button>
+      </div>
+      <div class="work-scrollable">
+        <!-- Intro Section -->
+        <div class="works-intro">
+          <h2>My Works</h2>
+          <p>I juggle these Softwares to create. Literally!</p>
+          <img src="assets/juggle-2.gif" class="intro-img">
+        </div>
+          <!-- Skills Tree Button -->
+          <h3 class="skills-btn" onclick="openSkillsLightbox()">Software Proficiency</h3>
+
+        <div class="popup-body">
+          <!-- JS will insert work cards here -->
+        </div>
+      </div>
+    </div>
+    <!-- Skills -->
+    <div id="skillsLightbox" class="lightbox" onclick="closeSkillsLightbox(event)">
+      <div class="lightbox-content" onclick="event.stopPropagation()">
+        <div class="skills-scroll-wrapper">
+
+            <div class="skills-tree">
+              <!-- Hexagon skill goes here -->
+            </div>
+        </div>
+        <div class="skills-list">
+          <h3>Software Proficiency</h3>
+          <ul>
+            <li><strong>Love To Use:</strong><span>Photoshop, Illustrator, After Effects, Procreate</span></li>
+            <li><strong>Learning:</strong><span>Visual Studio Code, OpenToonz, Openshot Video Editor</span></li>
+            <li><strong>Looking At:</strong><span>TVPaint, Aseprite, Blender</span></li>
+          </ul>
+        </div>
+          <div>
+            <button id="skillsToggle">Switch to List View</button>
+            <div class="skills-legend">
+              <div class="legend-item-wrapper">
+                <div class="legend-item love"></div>
+                <span>Lovely</span>
+              </div>
+              <div class="legend-item-wrapper">
+                <div class="legend-item learn"></div>
+                <span>Learning</span>
+              </div>
+              <div class="legend-item-wrapper">
+                <div class="legend-item locked"><img src="assets/locked-1.webp"></div>
+                <span>Locked</span>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <!--Contact-->
+    <div id="contactPopup" class="popup popup-contact">
+          <div class="popup-header">
+            <span>Contact</span>
+            <button onclick="closePopup('contactPopup')">X</button>
+          </div>
+          <div class="popup-scrollable">
+              <div class="contact-wrapper">
+                <h1>Zen's Postal Service</h1>
+                <h3>
+                  Send Postman Zen your lovely email and be sure to receive a reply.
+                </h3>
+                <img src="assets/postman_zen.gif" alt="Postman Zen delivering mail">
+
+                <p class="email-text">
+                  Email me at: 
+                  <span id="emailLink" class="email-link" title="Copy to clipboard">zenworklee@gmail.com</span>
+                </p>
+              <!-- Mail button -->
+              <a href="mailto:zenworklee@gmail.com" class="mail-btn">Open Mail App</a>
+            </div>
+          </div>
+    </div>
+    <!--taskbar-->
+    <div class="taskbar">
+          <button onclick="togglePopup('welcomePopup')" class="btn">
+            <img src="assets/hi-2.webp" alt="Info" class="normal">
+            <img src="assets/hi-1.webp" alt="Welcome" class="pressed">
+          </button>
+
+          <button onclick="togglePopup('profilePopup')" class="btn">
+            <img src="assets/msagent-3.webp" alt="Profile" class="normal">
+            <img src="assets/msagent-2.webp" alt="Profile" class="pressed">
+          </button>
+
+          <button onclick="togglePopup('worksPopup')" class="btn">
+            <img src="assets/directory_open_file_mydocs-4.webp" alt="Works" class="normal">
+            <img src="assets/directory_open_file_mydocs-5.webp" alt="Works" class="pressed">
+          </button>
+
+          <button onclick="togglePopup('contactPopup')"class="btn">
+            <img src="assets/mail-1.webp" alt="Contact" class="normal">
+            <img src="assets/mail-2.webp" alt="Contact" class="pressed">
+          </button>
+
+    </div>
+    <script src="homepage.js"></script>
+    <script src="skills.js"></script>
+    <div class="copyright">© 2026 Lee Zen</div>
+    </div>
+  </body>
+</html>
