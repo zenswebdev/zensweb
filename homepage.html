@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
       <!-- Favicon -->
-    <link rel="icon" type="image/webp" sizes="32x32" href="assets/cat-2.webp">
+    <link rel="icon" type="image/webp" sizes="32x32" href="assets/icons/cat-2.webp">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
@@ -17,9 +17,9 @@
             <div class="icon recycle"  aria-label="trashbin"></div></a>
             <div class="icon music"    aria-label="music"    onclick="togglePopup('musicPopup')"></div>
             <div class="icon games"    aria-label="games"    onclick="togglePopup('gamesPopup')"></div>
-            <div class="icon clock" aria-label="clock"       onclick="togglePopup('clockPopup')">
+            <div class="icon clock"    aria-label="clock"     onclick="togglePopup('clockPopup')">
               <div class="clock">
-                <img src="assets/clock_body-1.webp" alt="clock" class="clock-face" >
+                <img src="assets/icons/clock_body-1.webp" alt="clock" class="clock-face" >
                 <div class="hand hour" id="hourHand"></div>
                 <div class="hand minute" id="minuteHand"></div>
                 <div class="hand second" id="secondHand"></div>
@@ -30,6 +30,9 @@
             <div class="icon cat"      aria-label="cat"      onclick="togglePopup('catPopup')"></div>
             <div class="icon credits" aria-label="credits" onclick="togglePopup('creditsPopup')"></div>
             <div class="icon films" aria-label="films" onclick="togglePopup('filmsPopup')"></div>
+            <div class="icon bell" aria-label="bell" onclick="togglePopup('bellPopup')">
+            <span class="notification-badge"></span>
+            </div>
           </div>
     </div>
     <!-- Music Popup -->
@@ -87,15 +90,15 @@
           <h1>Currently Playing</h1>
           <div class="game-section currently-playing">
             <div class="game-card">
-              <img src="assets/icons/isaac.webp" alt="The Binding Of Isaac">
+              <img src="assets/game logos/isaac.webp" alt="The Binding Of Isaac">
               <p>The Binding Of Isaac</p>
             </div>
             <div class="game-card">
-              <img src="assets/icons/apex.webp" alt="Apex Legends">
+              <img src="assets/game logos/apex.webp" alt="Apex Legends">
               <p>Apex Legends</p>
             </div>
             <div class="game-card">
-              <img src="assets/icons/nubby.webp" alt="Nubby's Number Factory">
+              <img src="assets/game logos/nubby.webp" alt="Nubby's Number Factory">
               <p>Nubby's Number Factory</p>
             </div>      
           </div>
@@ -103,30 +106,30 @@
           <h1>In Rotation</h1>
           <div class="game-section">
             <div class="game-card">
-              <img src="assets/icons/balatro.webp" alt="Balatro">
+              <img src="assets/game logos/balatro.webp" alt="Balatro">
               <p>Balatro</p>
             </div>
             <div class="game-card">
-              <img src="assets/icons/peak.webp" alt="Peak">
+              <img src="assets/game logos/peak.webp" alt="Peak">
               <p>Peak</p>
             </div>
             <div class="game-card">
-              <img src="assets/icons/rain.webp" alt="Risk Of Rain 2">
+              <img src="assets/game logos/rain.webp" alt="Risk Of Rain 2">
               <p>Risk Of Rain 2</p>
             </div>      
           </div>
           <h1>Wishlist</h1>
           <div class="game-section">
             <div class="game-card">
-              <img src="assets/icons/carpark.webp" alt="Car Park Capital">
+              <img src="assets/game logos/carpark.webp" alt="Car Park Capital">
               <p>Car Park Capital</p>
             </div>
             <div class="game-card">
-              <img src="assets/icons/clover.webp" alt="CloverPit">
+              <img src="assets/game logos/clover.webp" alt="CloverPit">
               <p>CloverPit</p>
             </div>      
             <div class="game-card">
-              <img src="assets/icons/mega.webp" alt="Megabonk">
+              <img src="assets/game logos/mega.webp" alt="Megabonk">
               <p>Megabonk</p>
             </div>           
           </div>
@@ -227,6 +230,17 @@
             <img src="assets/Absolute_Cinema.webp">
             <h1>In Progress</h1>
           </div>
+    </div>
+    <!-- Announcement Popup -->
+    <div id="bellPopup" class="popup popup-general">
+          <div class="popup-header">
+            Announcement
+            <button onclick="closePopup('bellPopup')">X</button>
+          </div>
+          <div class="popup-body">
+          <h2>Site Update</h2>
+          <p>Get your ass on the floor</p>
+        </div>
     </div>
     <!--Welcome Popup-->
     <div id="welcomePopup" class="popup popup-welcome">
@@ -408,23 +422,23 @@
     <!--taskbar-->
     <div class="taskbar">
           <button onclick="togglePopup('welcomePopup')" class="btn">
-            <img src="assets/hi-2.webp" alt="Info" class="normal">
-            <img src="assets/hi-1.webp" alt="Welcome" class="pressed">
+            <img src="assets/icons/hi-2.webp" alt="Info" class="normal">
+            <img src="assets/icons/hi-1.webp" alt="Welcome" class="pressed">
           </button>
 
           <button onclick="togglePopup('profilePopup')" class="btn">
-            <img src="assets/msagent-3.webp" alt="Profile" class="normal">
-            <img src="assets/msagent-2.webp" alt="Profile" class="pressed">
+            <img src="assets/icons/msagent-3.webp" alt="Profile" class="normal">
+            <img src="assets/icons/msagent-2.webp" alt="Profile" class="pressed">
           </button>
 
           <button onclick="togglePopup('worksPopup')" class="btn">
-            <img src="assets/directory_open_file_mydocs-4.webp" alt="Works" class="normal">
-            <img src="assets/directory_open_file_mydocs-5.webp" alt="Works" class="pressed">
+            <img src="assets/icons/directory_open_file_mydocs-4.webp" alt="Works" class="normal">
+            <img src="assets/icons/directory_open_file_mydocs-5.webp" alt="Works" class="pressed">
           </button>
 
           <button onclick="togglePopup('contactPopup')"class="btn">
-            <img src="assets/mail-1.webp" alt="Contact" class="normal">
-            <img src="assets/mail-2.webp" alt="Contact" class="pressed">
+            <img src="assets/icons/mail-1.webp" alt="Contact" class="normal">
+            <img src="assets/icons/mail-2.webp" alt="Contact" class="pressed">
           </button>
 
     </div>

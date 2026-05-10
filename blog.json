@@ -1,9 +1,18 @@
 [
-  {
-    "id": "site-build",
-    "date": "2026-05-01",
-    "title": "Started building my site",
-    "topic": "dev",
-    "content": "This is where I started building my personal site."
-  }
+{
+"id": "site-build",
+"date": "09-11-2026",
+"title": "Getting Killed",
+"topic": "dev",
+"avatar": "assets/cat-2.webp",
+"content": "what kind of dog is this into n0othing under the pressure you were raised find jjoeojfjodeoojdodjoxwjojojdjdwjo<p>this is a fruit not a dog</p><p>dumbass</p>"
+},
+{
+"id": "void-page",
+"title": "Building the Void Page",
+"date": "10-05-2026",
+"topic": "",
+"avatar": "assets/Biscuit_wobble-2.gif",
+"content": "Check out this screenshot:<br><img src='assets/cat-1.webp' class='post-img'><p>Pretty cool, right?</p>"
+} 
 ]

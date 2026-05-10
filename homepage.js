@@ -489,3 +489,47 @@ function highlightActiveTrack() {
 if (playPauseBtn && volUpBtn && volDownBtn && muteBtn && prevBtn && nextBtn && musicPlayer && musicList && scrubber && songImg) {
   // ...music player setup code...
 }
+
+const bell = document.querySelector(".icon.bell");
+const badge = document.querySelector(".notification-badge");
+
+/* =========================
+   Notification Controller
+========================= */
+function setBellNotification(count) {
+
+  // OFF
+  if (count <= 0) {
+    bell.classList.remove("has-announcement");
+    badge.textContent = "";
+    return;
+  }
+
+  // ON
+  bell.classList.add("has-announcement");
+
+  // number
+  badge.textContent = count > 99 ? "99+" : count;
+}
+
+/* Popup */
+function togglePopup(id) {
+  const popup = document.getElementById(id);
+
+  const isOpen = popup.style.display === "block";
+
+  if (isOpen) {
+    popup.style.display = "none";
+    return;
+  }
+
+  popup.style.display = "block";
+
+  // clear notification
+  if (id === "bellPopup") {
+    setBellNotification(0);
+  }
+}
+
+/* initial state */
+setBellNotification(1);

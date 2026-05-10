@@ -74,7 +74,7 @@ body {
   position: relative;
   width: 80px;
   height: 80px;
-  background: none; /* remove old background-image usage */
+  background: none;
   cursor: pointer;
 }
 
@@ -107,36 +107,35 @@ body {
   opacity: 1;
 }
 
-/* Per-icon assignments */
 /* Music */
-.icon.music::before  { background-image: url("assets/cd_audio_cd_a-4.webp"); }
-.icon.music::after   { background-image: url("assets/cd_audio_cd_a-3.webp"); }
+.icon.music::before  { background-image: url("assets/icons/cd_audio_cd_a-4.webp"); }
+.icon.music::after   { background-image: url("assets/icons/cd_audio_cd_a-3.webp"); }
 /* Games */
-.icon.games::before  { background-image: url("assets/steam-1.webp"); }
-.icon.games::after   { background-image: url("assets/steam-2.webp"); }
+.icon.games::before  { background-image: url("assets/icons/steam-1.webp"); }
+.icon.games::after   { background-image: url("assets/icons/steam-2.webp"); }
 /* Recycle */
-.icon.recycle::before { background-image: url("assets/recycle_bin_empty-4.webp"); }
-.icon.recycle::after  { background-image: url("assets/recycle_bin_empty-5.webp"); }
+.icon.recycle::before { background-image: url("assets/icons/recycle_bin_empty-4.webp"); }
+.icon.recycle::after  { background-image: url("assets/icons/recycle_bin_empty-5.webp"); }
 /* Writings */
-.icon.writings::before { background-image: url("assets/typewriter-2.webp"); }
-.icon.writings::after  { background-image: url("assets/typewriter-1.webp"); }
+.icon.writings::before { background-image: url("assets/icons/typewriter-2.webp"); }
+.icon.writings::after  { background-image: url("assets/icons/typewriter-1.webp"); }
 /* Paint */
-.icon.paint::before  { background-image: url("assets/palette-1.webp"); }
-.icon.paint::after   { background-image: url("assets/palette-2.webp"); }
-/* Apple (if enabled) */
-.icon.apple::before  { background-image: url("assets/bad_apple-1.webp"); }
-.icon.apple::after   { background-image: url("assets/bad_apple-2.webp"); }
+.icon.paint::before  { background-image: url("assets/icons/palette-1.webp"); }
+.icon.paint::after   { background-image: url("assets/icons/palette-2.webp"); }
 /* Cat */
-.icon.cat::before  { background-image: url("assets/cat-1.webp"); }
-.icon.cat::after  { background-image: url("assets/cat-2.webp"); }
+.icon.cat::before  { background-image: url("assets/icons/cat-1.webp"); }
+.icon.cat::after  { background-image: url("assets/icons/cat-2.webp"); }
 /* Credits */
-.icon.credits::before  { background-image: url("assets/credits-1.webp"); }
-.icon.credits::after   { background-image: url("assets/credits-2.webp"); }
+.icon.credits::before  { background-image: url("assets/icons/credits-1.webp"); }
+.icon.credits::after   { background-image: url("assets/icons/credits-2.webp"); }
 /* Films */
-.icon.films::before  { background-image: url("assets/film-1.webp"); }
-.icon.films::after   { background-image: url("assets/film-2.webp"); }
+.icon.films::before  { background-image: url("assets/icons/film-1.webp"); }
+.icon.films::after   { background-image: url("assets/icons/film-2.webp"); }
+/* Announcement */
+.icon.bell::before  { background-image: url("assets/icons/bell-1.webp"); }
+.icon.bell::after   { background-image: url("assets/icons/bell-2.webp"); }
 
-/* --- Games Popup Styling --- */
+
 .games-scrollable {
   background-color: rgba(0, 0, 0, 0.7);
   background-blend-mode: darken;
@@ -328,7 +327,7 @@ body {
     inset 4px 4px #404040,
     inset -4px -4px #dcdcdc;
 }
-/* Popup Body */
+
 #musicPopup .popup-body {
   max-height: 500px;
   max-width: 300px;
@@ -394,7 +393,67 @@ body {
   box-sizing: border-box;
   flex-direction: column;  /* default flex layout for header + content */
 }
+/* Bell must be relative */
+.icon.bell {
+  position: relative;
+}
+.notification-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
 
+  width: 20px;
+  height: 20px;
+
+  background: #ff2b2b;
+  color: white;
+
+  font-size: 12px;
+  font-weight: 900;
+  font-family: monospace;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  image-rendering: pixelated;
+  border: 2px solid #000;
+  z-index: 2;
+  border-radius: 15px;
+
+  box-shadow:
+    1px 2px 0px #000,      /* main shadow (bottom-right) */
+    1px 1px 0px #2a0000;   /* deeper shadow layer */
+  position: absolute;
+  animation: bellBlink 5s infinite;
+}
+
+/* fake top highlight layer */
+.notification-badge::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  height: 30%;
+
+  background: rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+
+}
+
+/* Blink effect */
+@keyframes bellBlink {
+  48% { opacity: 1; }
+  50% { opacity: 0; }
+  51% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+/* Hide badge when inactive */
+.icon.bell:not(.has-announcement) .notification-badge {
+  display: none;
+}
 /* === Header === */
 .popup-header {
   background: #000080;
@@ -418,6 +477,7 @@ body {
   font-size: 14px;
   box-sizing: border-box;
   padding: 20px;
+  z-index: 999;
 }
 .popup-body h1,
 .popup-body h2,
@@ -505,7 +565,6 @@ body {
   color: white;
 }
 
-/* Centered and responsive image */
 .cat-intro-img {
   max-width: 100%;  /* make image responsive */
   height: auto;
@@ -535,10 +594,10 @@ body {
   text-align: center;
 }
 .contributors img {
-  width: 120px;          /* uniform size */
+  width: 120px;     
   height: 120px;
-  object-fit: cover;     /* keeps image centered inside */
-  border-radius: 50%;    /* makes it circular */
+  object-fit: cover;    
+  border-radius: 50%;    
   border: 2px solid #ccc; 
   background-image: url(assets/space3.gif);
   box-shadow: 2px 2px #404040;
@@ -1526,7 +1585,7 @@ body {
   display: block;
 }
 .copyright {
-  font-family: sans-serif;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-weight: bold;
   position: absolute;
   right: 10px;

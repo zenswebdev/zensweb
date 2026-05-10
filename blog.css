@@ -1,14 +1,14 @@
 body {
   margin: 0;
   height: 100vh;
-  font-family: sans-serif;
+  font-family: 'Courier New', Courier, monospace;
   display: flex;
   position: relative;
   overflow: hidden;
-  background: #111;
-  background: url("assets/rain1.gif")center;
+  background-color: #02023f;
+  background-image: url("assets/rain1.gif");
+  background-position: center;
   background-attachment: fixed;
-  color: #eee;
 }
 .screen {
   position: relative;
@@ -51,28 +51,40 @@ body {
 .blog {
   max-width: 640px;
   margin: 0 auto;
+  position: relative;
+  z-index: 5;
 }
 
+.letter-n{
+ opacity: 0.05;
+}
 h1 {
-    margin: 3.5rem 0 3rem 0;
-    font-family:'Courier New', Courier, monospace;
-    font-style: italic;
-    font-size: 72px;
-    text-align: center;
-    color: white;
-    filter: drop-shadow(2px 2px 0 darkslategrey);
-  }
+  margin: 3.5rem 0 3rem 0;
+
+  font-style: italic;
+  font-size: clamp(2.5rem, 8vw, 72px);
+
+  text-align: center;
+
+  word-break: break-word;
+  text-wrap: balance;
+
+  color: white;
+
+  filter: drop-shadow(2px 2px 0 darkslategrey);
+}
 .top-bar {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 0.5rem;
 }
 .filters {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  margin-left: 0.5rem;
 }
 .filter-btn {
   padding: 6px 12px;
@@ -95,7 +107,7 @@ h1 {
   padding: 6px 12px;
   font-size: 12px;
   white-space: nowrap; 
-
+  margin-right: 0.5rem;
   transition: all 0.1s ease;
 }
 .back-btn:hover {
@@ -104,39 +116,87 @@ h1 {
 }
 
 .post {
-  display: flex;
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
   align-items: center;
-  justify-content: space-between;
+  gap: 1rem;
   background: #444;
   border-bottom: 1px solid #333;
   padding: 12px 0;
   cursor: pointer;
+  margin: 0.3rem 0.5rem 0.3rem 0.5rem;
 }
 .post:hover {
-  background: rgb(45, 129, 45);
+  background: rgb(82, 82, 82);
 }
 .post:active {
   transform: scale(0.99);
 }
 .post-date {
-  flex: 1;
   font-size: 12px;
+  font-weight: bold;
   color: #777;
   padding-left: 2vh;
 }
+
 .post-title {
-  flex: 2;
-  text-align: center;
+  text-align:start;
   font-size: 18px;
+  font-style: italic;
+  color: #aaa;
 }
+
 .post-topic {
-  flex: 1;
+  margin:0 5px;
   text-align: right;
   font-size: 12px;
+  font-weight: normal;
   color: #aaa;
   padding-right: 2vh;
 }
 
+p {
+ margin: 0;
+ padding-top: 0.3rem;
+}
+@media (max-width: 600px) {
+
+  .post {
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "date title"
+      ".    topic";
+
+    align-items: start;
+    gap: 0.3rem 1rem;
+
+    padding: 14px 0;
+  }
+
+  .post-date {
+    grid-area: date;
+
+    padding-left: 2vh;
+  }
+
+  .post-title {
+    grid-area: title;
+
+    text-align: left;
+    padding-right: 2vh;
+  }
+
+  .post-topic {
+    grid-area: topic;
+
+    text-align: left;
+
+    font-size: 0.75rem;
+    opacity: 0.6;
+
+    padding-right: 2vh;
+  }
+}
 /*Lightbox*/
 .modal {
   position: fixed;
@@ -146,30 +206,177 @@ h1 {
   justify-content: center;
   align-items: flex-start;
   padding-top: 10rem;
+  
   z-index: 9999;
-}
-
-.modal.hidden {
-  display: none;
+  overflow: auto;
 }
 
 .modal-content {
   background: #111;
-  padding: 20px;
+  padding: 0.5rem 1rem 5rem 1rem ;
   max-width: 700px;
+  max-height: fit-content;
   width: 90%;
   color: #eee;
   border: 1px solid #333;
+  margin: 0 0.5rem 0 0.5rem
+}
+#modal-body {
+  white-space: normal;      
+  overflow-wrap:break-word;
 }
 
-.close {
-  float: right;
-  cursor: pointer;
-  font-size: 20px;
+/* The main container */
+.modal-layout {
+  display: flex;
+  flex-direction: column;
 }
-/* Responsive */
-@media (max-width: 500px) {
-  .post-title {
-    font-size: 16px;
+
+/* Header section (Title & Image) */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end; /* Aligns title/date to the bottom of the avatar */
+  padding-bottom: 1.5rem;
+}
+
+/* The horizontal line and the two-column split */
+.modal-body-grid {
+  display: flex;
+  border-top: 1px solid rgba(255, 255, 255, 0.2); /* THE HORIZONTAL DIVIDER */
+}
+
+/* Left Column: Content */
+.modal-post-content {
+  flex: 1;
+  padding-top: 1.5rem;
+  padding-right: 20px;
+  min-width: 0;
+}
+
+.modal-post-content img {
+  max-width: 100%;    
+  height: auto;     
+  display: block;     
+  margin: 1rem auto; 
+  
+}
+/* Right Column: Sidebar */
+.modal-sidebar {
+  width: 120px;
+  padding-top: 1.5rem;
+  padding-left: 20px;
+  border-left: 1px solid rgba(255, 255, 255, 0.2); 
+  min-height: 200px;
+}
+
+.sidebar-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 11px;
+}
+
+.modal-main {
+  flex: 1;
+  min-width: 0; /* Prevents overflow */
+}
+
+
+.modal-sidebar {
+  width: 50px;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  padding-left: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-weight: bold;
+}
+
+.sidebar-links {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.sidebar-links a {
+  color: #aaa;
+  text-decoration: none;
+  transition: color 0.1s;
+}
+
+.sidebar-links a:hover {
+  color: #fff;
+}
+
+.sidebar-links .disabled {
+  color: #444;
+  pointer-events: none;
+}
+
+.sidebar-spacer {
+  height: 20px;
+}
+
+.modal-content {
+  max-width: 850px; 
+}
+
+
+@media (max-width: 600px) {
+  .modal-layout {
+    flex-direction: column;
   }
+  .modal-sidebar {
+    border-left: 1px solid #333;
+    padding-top: 20px;
+    width: 10%;
+    padding-left: 10px;
+  }
+  .sidebar-links {
+    font-size: 12px;
+    min-width: fit-content;
+    
+  }
+}
+.modal-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.modal-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.modal-title {
+  margin: 1rem 0 0.4rem 0;
+}
+
+.modal-subinfo {
+  display: flex;
+  gap: 1rem;
+
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+.modal-avatar {
+  width: 72px;
+  height: 72px;
+  margin: 0.4rem 1rem 0 0;
+  object-fit: cover;
+  image-rendering: pixelated;
+  flex-shrink: 0;
+}
+
+.modal.hidden {
+  display: none;
 }

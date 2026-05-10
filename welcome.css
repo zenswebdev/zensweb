@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: #0f053c;
+  background-color: #000000;
   background-image: url(assets/space4.gif);
   min-height: 100vh;
   display: grid;
@@ -120,7 +120,7 @@ body {
   display: block;
   width: calc(260px * var(--size));
   height: calc(195px * var(--size));
-  background-color: #0f053c;
+  background-color: #000000;
   background-image: url(assets/space4.gif);
   margin: auto;
   position: absolute;
@@ -129,15 +129,15 @@ body {
   right: 0;
   border-radius: calc(5px * var(--size));
   box-shadow: 0 0 calc(20px * var(--size)) calc(5px * var(--size)) #2b3030 inset;
-  overflow: hidden; /* so child layers stay inside */
+  overflow: hidden; 
 }
 .screen-display {
   display: flex;
-  flex-direction: column; /* stack elements vertically */
-  align-items: center;    /* center horizontally */
-  justify-content: center;/* center vertically in screen */
+  flex-direction: column; 
+  align-items: center;   
+  justify-content: center;
   height: 100%;
-  gap: 10px;              /* space between picture and button */
+  gap: 10px;            
 }
 
 .signin-btn {
@@ -157,21 +157,21 @@ body {
 .profile-pic {
   width: 170px;
   height: 170px;
-  border-radius: 50%;     /* circular */
-  object-fit: cover;      /* fill circle */
+  border-radius: 50%;     
+  object-fit: cover;      
   border: 2px solid #ffffff; 
   background-image: url(assets/space5.gif);
 }
 
 @media (max-width: 415px) {
   .signin-btn {
-    width: 120px;        /* smaller width */
-    height: 40px;        /* smaller height */
-    font-size: 20px;     /* adjust text size */
+    width: 120px;        
+    height: 40px;       
+    font-size: 20px;   
   }
 
   .profile-pic {
-    width: 120px;        /* smaller circle */
+    width: 120px;       
     height: 120px;
   }
 }
@@ -209,7 +209,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #292929; /* dark screen */
+  background: #292929;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -229,7 +229,7 @@ body {
 }
 
 .screen-off::after {
-  content: "POWER OFF\A Updated 050326 ";
+  content: "POWER OFF\A Currently Updating \A 100526 ";
   white-space: pre-line;
   display: block;
   margin-top: 8px;
@@ -241,7 +241,7 @@ body {
   position: absolute;
   left: calc(37px * var(--size));
   bottom: calc(34px * var(--size));
-  width: calc(60px * var(--size)); /* size of the button */
+  width: calc(60px * var(--size)); 
   height: calc(60px * var(--size));
 }
 

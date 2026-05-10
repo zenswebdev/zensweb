@@ -11,123 +11,160 @@
 <body>
   <div class="screen">
     <div class="blog">
-      <h1>Ze BLOG</h1>
-
-      <div class="top-bar">
-        <div class="filters" id="filters"></div>
-        <a href="computer.html" class="back-btn">← BACK</a>
-      </div>
-
+      <h1>Ze<span class="letter-n">n</span>BLOG</h1>
+    <div class="top-bar">
+       <div class="filters" id="filters"></div>
+      <a href="homepage" class="back-btn">BACK HOME</a>
+    </div>
       <div id="posts"></div>
     </div>
 
     <div id="modal" class="modal hidden">
       <div class="modal-content">
-        <span class="close">&times;</span>
-        <div id="modal-body"></div>
+        <div id="modal-body">
+
+          <div class="modal-top">
+
+            <div class="modal-info">
+              <h2 class="modal-title"></h2>
+              <div class="modal-subinfo">
+                <span class="modal-date"></span>
+                <span class="modal-tag"></span>
+              </div>
+            </div>
+            <img class="modal-avatar">
+          </div>
+
+          <div class="modal-divider"></div>
+
+          <div class="modal-post-content">
+            post content...
+          </div>
+        </div>
       </div>
     </div>
+    
   </div>
 </body>
+<script>  
+  const DEBUG_MODAL = false;
+  const DEBUG_POST_ID = "void-page";
 
-<script>
   let postsData = [];
-
   const postsContainer = document.getElementById("posts");
   const filtersContainer = document.getElementById("filters");
+  const modal = document.getElementById("modal");
+  const modalBody = document.getElementById("modal-body");
 
-  const DEBUG_MODAL = true;
-  const DEBUG_POST_ID = "site-build";
+function formatDate(dateString) {
+  const parts = dateString.split("-"); 
+  const date = new Date(parts[2], parts[1] - 1, parts[0]);
+  return date.toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+  });
+}
 
   fetch("blog.json")
     .then(res => res.json())
     .then(data => {
       postsData = data;
-
-      postsData.sort((a, b) => new Date(a.date) - new Date(a.date));
+      postsData.sort((a, b) => new Date(a.date) - new Date(b.date));
 
       initFilters();
       renderPosts();
+      
       if (DEBUG_MODAL) {
-     const debugPost = postsData.find(
-    post => post.id === DEBUG_POST_ID
-  );
-
-  if (debugPost) {
-    openModal(debugPost);
-    }
-   }
-  });
-
+        const debugPost = postsData.find(p => p.id === DEBUG_POST_ID);
+        if (debugPost) openModal(debugPost);
+      }
+    });
 
   function initFilters() {
-    const topics = ["all", ...new Set(postsData.map(p => p.topic))];
-
+    const topics = ["all", ...new Set(postsData.map(post => post.topic?.trim()).filter(t => t))];
     topics.forEach(topic => {
       const btn = document.createElement("button");
       btn.textContent = topic;
       btn.className = "filter-btn";
-
       if (topic === "all") btn.classList.add("active");
 
       btn.onclick = () => {
-        document.querySelectorAll(".filter-btn")
-          .forEach(b => b.classList.remove("active"));
-
+        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
         renderPosts(topic);
       };
-
       filtersContainer.appendChild(btn);
     });
   }
 
   function renderPosts(filter = "all") {
     postsContainer.innerHTML = "";
+    const filtered = filter === "all" ? postsData : postsData.filter(p => p.topic === filter);
 
-    const filtered = filter === "all"
-      ? postsData
-      : postsData.filter(p => p.topic === filter);
-
-    filtered.forEach((post, index) => {
+    filtered.forEach((post) => {
       const div = document.createElement("div");
       div.className = "post";
-
       div.innerHTML = `
-        <div class="post-date">${post.date}</div>
+        <div class="post-date">${formatDate(post.date)}</div>
         <div class="post-title">${post.title}</div>
         <div class="post-topic">${post.topic}</div>
       `;
-
-      // CLICK HANDLER
       div.onclick = () => openModal(post);
-
       postsContainer.appendChild(div);
     });
   }
-  const modal = document.getElementById("modal");
-  const modalBody = document.getElementById("modal-body");
-  const closeBtn = document.querySelector(".close");
 
   function openModal(post) {
     modal.classList.remove("hidden");
 
+    const idx = postsData.findIndex(p => p.id === post.id);
+    const nextPost = postsData[idx - 1]; 
+    const prevPost = postsData[idx + 1];
+
     modalBody.innerHTML = `
-      <h2>${post.title}</h2>
-      <p><small>${post.date} • ${post.topic}</small></p>
-      <hr>
-      <p>${post.content}</p>
+      <div class="modal-layout">
+        <div class="modal-header">
+          <div class="modal-info">
+            <h2 class="modal-title">${post.title}</h2>
+            <div class="modal-subinfo">
+              <span class="modal-date">${formatDate(post.date)}</span> · 
+              <span class="modal-tag">${post.topic}</span>
+            </div>
+          </div>
+          ${post.avatar ? `<img src="${post.avatar}" class="modal-avatar">` : ""}
+        </div>
+
+        <div class="modal-body-grid">
+          <div class="modal-post-content">
+            ${post.content}
+          </div>
+          
+          <div class="modal-sidebar">
+            <div class="sidebar-links">
+              ${nextPost ? `<a href="javascript:void(0)" onclick="openModalById('${nextPost.id}')">NEW LOG ↑</a>` : '<span class="disabled">TOP</span>'}
+              <div class="sidebar-spacer"></div>
+              ${prevPost ? `<a href="javascript:void(0)" onclick="openModalById('${prevPost.id}')">OLD LOG ↓</a>` : '<span class="disabled">END</span>'}
+              <div class="sidebar-spacer"></div>
+              <a href="javascript:void(0)" onclick="closeModal()">BACK</a>
+            </div>
+          </div>
+        </div>
+      </div>
     `;
   }
 
-  closeBtn.onclick = () => {
+  function openModalById(id) {
+    const post = postsData.find(p => p.id === id);
+    if (post) openModal(post);
+  }
+
+  function closeModal() {
     modal.classList.add("hidden");
-  };
+  }
 
   window.onclick = (e) => {
-    if (e.target === modal) {
-      modal.classList.add("hidden");
-    }
+    if (e.target === modal) closeModal();
   };
 </script>
 </html>
