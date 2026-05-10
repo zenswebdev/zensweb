@@ -512,24 +512,5 @@ function setBellNotification(count) {
   badge.textContent = count > 99 ? "99+" : count;
 }
 
-/* Popup */
-function togglePopup(id) {
-  const popup = document.getElementById(id);
-
-  const isOpen = popup.style.display === "block";
-
-  if (isOpen) {
-    popup.style.display = "none";
-    return;
-  }
-
-  popup.style.display = "block";
-
-  // clear notification
-  if (id === "bellPopup") {
-    setBellNotification(0);
-  }
-}
-
 /* initial state */
 setBellNotification(1);

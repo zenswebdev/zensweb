@@ -48,7 +48,7 @@ body {
   pointer-events: none;
   background:linear-gradient(to bottom, rgba(0,0,0,0.12) 0px,rgba(0,0,0,0.12) 1px, transparent 2px,transparent 4px);
   background-size: 100% 4px;
-  z-index: 3;
+  z-index: 99;
 }
 
 .apps-scrollable{
@@ -389,9 +389,10 @@ body {
   display: none;           /* hide all popups initially */
   max-width: calc(100% - 40px);
   max-height: calc(100vh - 4px);
-  overflow: hidden;        /* scroll handled by child */
+  overflow: hidden;      
   box-sizing: border-box;
-  flex-direction: column;  /* default flex layout for header + content */
+  flex-direction: column;  
+  z-index: 3;
 }
 /* Bell must be relative */
 .icon.bell {
