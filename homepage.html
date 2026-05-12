@@ -31,8 +31,8 @@
             <div class="icon credits" aria-label="credits" onclick="togglePopup('creditsPopup')"></div>
             <div class="icon films" aria-label="films" onclick="togglePopup('filmsPopup')"></div>
             <div class="icon bell" aria-label="bell" onclick="togglePopup('bellPopup')">
-            <span class="notification-badge"></span>
-            </div>
+            <span class="notification-badge"></span></div>
+            <!--<div class="icon radio" aria-label="radio" onclick="togglePopup('radioPopup')"></div> -->
           </div>
     </div>
     <!-- Music Popup -->
@@ -179,13 +179,11 @@
         <button onclick="closePopup('catPopup')">X</button>
       </div>
       <div class="cat-scrollable">
-        <!-- Cat Intro -->
         <div class="cat-intro">
           <h2>Biscuit Girl</h2>
           <p>Queen B</p>
           <img src="assets/Biscuit_wobble.gif" alt="Biscuit intro" class="cat-intro-img">
         </div>
-
         <!-- Cat Gallery -->
         <div class="cat-gallery">
           <img src="assets/cat_swing.gif" alt="Biscuit Swing" class="cat-img">
@@ -237,11 +235,24 @@
             Announcement
             <button onclick="closePopup('bellPopup')">X</button>
           </div>
-          <div class="popup-body">
-          <h2>Site Update</h2>
-          <p>Get your ass on the floor</p>
-        </div>
+          <div class="popup-scrollable">
+            <div class="popup-body announcement-body">
+            </div>
+          </div>
     </div>
+    <!-- Radio Popup 
+    <div id="radioPopup" class="popup popup-general">
+      <div class="popup-header">
+        Radio
+        <button onclick="closePopup('radioPopup')">X</button>
+      </div>
+
+      <div class="popup-body">
+        <div class="radio-scrollable">
+        <h2>What's Zen listening to now</h2>
+        </div>
+      </div>
+    </div>-->
     <!--Welcome Popup-->
     <div id="welcomePopup" class="popup popup-welcome">
           <div class="popup-header">

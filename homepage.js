@@ -1,6 +1,6 @@
 // === Development Toggle ===
 const devEditMode = false;
-const devPopupId = "profilePopup"; // dev-only popup
+const devPopupId = "bellPopup"; // dev-only popup
 
 document.addEventListener("DOMContentLoaded", () => {
   // --- Handle initial popup ---
@@ -347,6 +347,49 @@ if (toggleBtn) {
 function closeSkillsLightbox(event) {
   event.currentTarget.style.display = 'none';
 }
+// --- Announcement ---
+fetch('announcements.json')
+  .then(res => res.json())
+  .then(data => {
+
+    const container = document.querySelector('.announcement-body');
+
+    if (!container) return;
+
+data.forEach((item, index) => {
+
+  const card = document.createElement('div');
+  card.className = 'announcement-card';
+
+  if (index === 0) {
+    card.classList.add('announcement-new');
+  } 
+  else if (index === 1) {
+    card.classList.add('announcement-recent');
+  } 
+  else {
+    card.classList.add('announcement-old');
+  }
+
+  card.innerHTML = `
+    <div class="announcement-meta">
+      ${item.type} // ${item.date}
+    </div>
+   <div class="announcement-title">
+      ${item.title}
+    </div>
+
+    <div class="announcement-divider"></div>
+
+    <p>${item.message}</p>
+  `;
+
+  container.appendChild(card);
+
+});
+
+  })
+  .catch(err => console.error('Failed to load announcements:', err));
 
 // --- Popup utilities ---
 function keepPopupOpen(id) {
@@ -380,7 +423,11 @@ function togglePopup(id) {
 
   // Hide all other popups
   document.querySelectorAll('.popup').forEach(p => p.style.display = 'none');
+  /* Clear bell notification when opening announcement popup */
 
+  if (id === 'bellPopup') {
+    setBellNotification(0);
+}
   keepPopupOpen(id);
 }
 
