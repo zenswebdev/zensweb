@@ -113,6 +113,9 @@ body {
 /* Games */
 .icon.games::before  { background-image: url("assets/icons/steam-1.webp"); }
 .icon.games::after   { background-image: url("assets/icons/steam-2.webp"); }
+/* clock */
+.icon.clock::before  { background-image: url("assets/icons/clock_body-1.webp"); }
+.icon.clock::after   { background-image: url("assets/icons/clock_body-2.webp"); }
 /* Recycle */
 .icon.recycle::before { background-image: url("assets/icons/recycle_bin_empty-4.webp"); }
 .icon.recycle::after  { background-image: url("assets/icons/recycle_bin_empty-5.webp"); }
@@ -134,14 +137,14 @@ body {
 /* Announcement */
 .icon.bell::before  { background-image: url("assets/icons/bell-1.webp"); }
 .icon.bell::after   { background-image: url("assets/icons/bell-2.webp"); }
-/* Radio */
+/* Radio 
 .icon.radio::before  { background-image: url("assets/icons/radio-1.webp"); }
-.icon.radio::after   { background-image: url("assets/icons/radio-1.webp"); }
+.icon.radio::after   { background-image: url("assets/icons/radio-1.webp"); }*/
 
 .games-scrollable {
   background-color: rgba(0, 0, 0, 0.7);
   background-blend-mode: darken;
-  background-image: url("assets/blackhole1.gif");
+  background-image: url("assets/city1.gif");
   background-size: cover;
   background-position: center;
 }
@@ -208,20 +211,24 @@ body {
 }
 
 /*Clock*/
-.clock {
+.icon.clock {
   position: relative;
-  width: 80px;   /* size of your clock */
+  width: 80px;
   height: 80px;
-  image-rendering: pixelated;
 }
-.clock-face {
+.icon.clock .clock {
+  position: relative;
   width: 100%;
   height: 100%;
-  display: block;
+  image-rendering: pixelated;
+  z-index: 3;
+}
+.icon.clock:hover .clock {
+  transform: scale(0.8);
 }
 .hand {
   position: absolute;
-  bottom: 50%;  /* pivot point at center */
+  bottom: 50%;  
   left: 50%;
   transform-origin: bottom center;
   transform: rotate(90deg);
